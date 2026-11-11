@@ -1,7 +1,6 @@
 import { test, expect } from "@playwright/test";
 
 test("should be fill sing up  form ", async ({ page }) => {
-  await page.goto("about:blank");
   await page.goto("https://www.testing.ledsak.ai/");
   const closeWindow = page.getByRole("button", { name: "Close video" });
 
@@ -17,7 +16,8 @@ test("should be fill sing up  form ", async ({ page }) => {
   await fullNameBox.pressSequentially("shahid ansari", { delay: 300 });
 
   let optionList = await page
-    .locator('(//select[@aria-hidden="true"])[2]').all();
+    .locator('(//select[@aria-hidden="true"])[2]')
+    .all();
   let storeOption = [];
   for (let list of optionList) {
     let allele = await list.textContent();

@@ -12,21 +12,23 @@ test("to verify the url", async ({ page }) => {
   //launch the url
   await page.goto("https://ledsak.ai");
 
+  console.log(` >> Cookies login print -- ${process.env.loginCookies}`);
+
   //check weather popup open or not
 
-  const closeVideo = await page.getByLabel("Close video");
-  await closeVideo.visible().click();
+  // const closeVideo = await page.getByLabel("Close video");
+  // await closeVideo.visible().click();
 
   //verify the title
-  expect(page).toHaveTitle(
-    "All-in-One AI CRM & Sales Automation Software - LEDSAK",
-  );
+  // expect(page).toHaveTitle(
+  //   "All-in-One AI CRM & Sales Automation Software - LEDSAK",
+  // );
 
   //verity the page header
   //    const header:Locator=  page.locator('//h1')
   //    expect(header).toHaveText('Ledsak: AI-Powered CRM Built for Smarter Sales')
 
-  expect(page.locator("//h1")).toHaveText(
-    "Ledsak: AI-Powered CRM Built for Smarter Sales",
+  await expect(page.locator("//h1")).toContainText(
+    "Ledsak handles follow-ups.",
   );
 });

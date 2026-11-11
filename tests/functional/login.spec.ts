@@ -2,9 +2,13 @@ import { test, expect } from "@playwright/test";
 
 test.describe("ledsak login and verify all lead link", () => {
   test("test", async ({ page }) => {
-    await page.goto("about:blank");
     await page.goto("https://www.testing.ledsak.ai/");
     const closeWindow = page.getByRole("button", { name: "Close video" });
+
+    const loginCookies = await page.context().cookies();
+    process.env.LOGIN_COOKIES = JSON.stringify(loginCookies);
+
+    console.log(`>> login cookies >> ${process.env.LOGIN_COOKIES}`);
 
     if (await closeWindow.isVisible()) {
       await closeWindow.click();
@@ -21,7 +25,8 @@ test.describe("ledsak login and verify all lead link", () => {
       .fill("demo@ledsak.ai");
     await page.getByRole("button", { name: "Login with Email" }).click();
     await page.getByRole("textbox").fill("753159");
-    await expect(page.getByRole("heading", { name: "Welcome" })).toBeVisible();
+
+    await expect(page.getByRole("heading", { name: "Welcome " })).toBeVisible();
     await page.getByRole("button", { name: "Today" }).click();
   });
 
@@ -45,6 +50,7 @@ test.describe("ledsak login and verify all lead link", () => {
       .fill("demo@ledsak.ai");
     await page.getByRole("button", { name: "Login with Email" }).click();
     await page.getByRole("textbox").fill("753159");
+
     await expect(page.getByRole("heading", { name: "Welcome" })).toBeVisible();
 
     await expect(page.getByRole("link", { name: "All Leads" })).toBeVisible();

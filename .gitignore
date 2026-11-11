@@ -12,3 +12,4 @@ node_modules/
 /report
 /example.*
 /allure-results
+/allure-report

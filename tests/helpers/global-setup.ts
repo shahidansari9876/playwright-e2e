@@ -19,4 +19,6 @@ export default async function globalSetup(config: FullConfig) {
   console.log(`[INFO]: Completed the global setup...`);
 
   // All other one-off tasks are
+
+  process.env.LOGIN_COOKIES = undefined; // to acces anywhre in the page for refernce,
 }

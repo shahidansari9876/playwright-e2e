@@ -1,0 +1,6 @@
+{
+  "statusCode": {
+    "succes": "200",
+    "autherror": "401"
+  }
+}

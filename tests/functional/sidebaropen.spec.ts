@@ -27,9 +27,10 @@ test.describe(
     );
 
     test(
-      "test login to side expand",{ tag: "@smoke" }, async ({ page }, testInfo) => {
+      "test login to side expand",
+      { tag: "@smoke" },
+      async ({ page }, testInfo) => {
         const email = "shahid.ansari@ledsak.ai";
-
         await page.goto("https://testing.ledsak.ai/?masterOtp=true");
         await page.getByPlaceholder("example@gmail.com").fill(email);
 
